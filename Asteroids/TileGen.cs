@@ -30,11 +30,13 @@ namespace Asteroids
            return rect;
        }
 
-       public void Init()
+       public void Init(GraphicsDevice graphics)
        {
-           Squares = new List<Rectangle>();
-           Textures = new List<Texture2D>();
            random = new Random();
+           Squares = new List<Rectangle>();
+           Squares.Add(GenSquare());
+           Textures = new List<Texture2D>();
+           Textures.Add(GenTexture(graphics));
        }
 
 
@@ -66,8 +68,15 @@ namespace Asteroids
 
        public void Update(GraphicsDevice graphics)
        {
+           
            for (int i = 0; i <= Squares.Count() - 1; i++)
            {
+
+               if (Textures.Count() <= 150)
+               {
+                   Textures.Add(GenTexture(graphics));
+               }
+
                if (Squares.Count() <= 150)
                {
                    if (!inter)
@@ -80,10 +89,6 @@ namespace Asteroids
                }
            }
 
-           if (Textures.Count() <= 150)
-           {
-               Textures.Add(GenTexture(graphics));
-           }
 
            texture = GenTexture(graphics);
 
@@ -110,8 +115,11 @@ namespace Asteroids
                {
                    intersected = true;
                }
+               else
+               {
+                   intersected = false;
+               }
 
-               else intersected = false;
            }
 
            return intersected;

@@ -37,7 +37,7 @@ namespace Asteroids
         {
 
             tile = new TileGen();
-            tile.Init();
+            tile.Init(GraphicsDevice);
 
                 base.Initialize();
         }
