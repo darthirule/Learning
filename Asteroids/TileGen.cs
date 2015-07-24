@@ -79,13 +79,18 @@ namespace Asteroids
 
                if (Squares.Count() <= 150)
                {
+
                    if (!inter)
                    {
-
                        Squares.Add(GenSquare());
+                       //inter = false;
+                   }
+                   else
+                   {
+                       inter = DoesIntersect(Squares[i]);  
                    }
 
-                   inter = checkInter(i);
+                   
                }
            }
 
@@ -104,25 +109,18 @@ namespace Asteroids
            spriteBatch.End();
        }
 
-       private bool checkInter(int Index)
+       private bool DoesIntersect(Rectangle rect)
        {
-
-           bool intersected = false;
 
            for (int i = 1; i <= Squares.Count() - 1; i++)
            {
-               if (Squares[Index].Intersects(Squares[i - 1]))
+               if (rect.Intersects(Squares[i - 1]))
                {
-                   intersected = true;
-               }
-               else
-               {
-                   intersected = false;
+                   return true;
                }
 
            }
-
-           return intersected;
+           return false;
        }
 
     }
