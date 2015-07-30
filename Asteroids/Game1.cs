@@ -7,6 +7,7 @@ namespace Asteroids
 {
     /// <summary>
     /// This is the main type for your game.
+    /// Test
     /// </summary>
     public class Game1 : Game
     {
